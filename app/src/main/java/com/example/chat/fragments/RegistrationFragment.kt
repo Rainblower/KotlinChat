@@ -31,28 +31,30 @@ class RegistrationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         register_button.setOnClickListener {
-
-            val email = email_edittext.text.toString()
-            val password = password_edittext.text.toString()
-            val username = username_edittext.text.toString()
-
-            if(email.isEmpty() || password.isEmpty()){
-                Toast.makeText(this.context,"Please enter text in email/password", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener {
-                    if(!it.isSuccessful) return@addOnCompleteListener
-
-                    //else successful
-                    Log.d("Main","Successfully created user with uid: ${it.result?.user?.uid}")
-                }
-
+            performRegister()
         }
-
         alredy_have_account_textview.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.toLogin))
     }
 
+    private fun performRegister(){
+        val email = email_edittext.text.toString()
+        val password = password_edittext.text.toString()
+        val username = username_edittext.text.toString()
 
+        if(email.isEmpty() || password.isEmpty()){
+            Toast.makeText(this.context,"Please enter text in email/password", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener {
+                if(!it.isSuccessful) return@addOnCompleteListener
+
+                //else successful
+                Log.d("Main","Successfully created user with uid: ${it.result?.user?.uid}")
+            }
+            .addOnFailureListener{
+                Toast.makeText(this.context,"Failed to create user: ${it.message}", Toast.LENGTH_LONG).show()
+            }
+    }
 }

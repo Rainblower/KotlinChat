@@ -13,7 +13,7 @@
             android:id="@+id/my_nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:navGraph="@navigation/navigation_graph"
-            app:defaultNavHost="true"/>
+            app:defaultNavHost="true" tools:layout_editor_absoluteY="166dp" tools:layout_editor_absoluteX="40dp"/>
 
 
 </android.support.constraint.ConstraintLayout>
