@@ -36,6 +36,9 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version" // use -ktx for Kotlin
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-storage:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 
 }
 apply plugin: 'com.google.gms.google-services'
